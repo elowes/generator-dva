@@ -1,0 +1,22 @@
+{
+  "name": "generator-dva",
+  "version": "1.0.0",
+  "description": "create react&dva app easily.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "yeoman-generator",
+    "react",
+    "dva",
+    "generator",
+    "frontend"
+  ],
+  "files": [
+    "generators"
+  ],
+  "author": "kaijun",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^2.0.5"
+  }
+}
