@@ -16,21 +16,24 @@ class HomePage extends Component {
 
   returnRandomMovieName () {
     const { homepage } = this.props
-    const arr = homepage.movietop250.subjects
-    const randomIndex = Math.floor(Math.random() * arr.length)
-    return arr[randomIndex].title
+    const arr = homepage.movietop250.subjects.map(i => i.title)
+    return arr.slice(0, 5).join('、')
   }
 
   render () {
     const { homepage, loading } = this.props
-    return <div className='container'>
-      <h1 className={styles.title}>
+    return <div>
+      <header className={styles.header}>
+        <img src={require('../../assets/react-logo.svg')} />
+        <h1>Welcome to React&dva</h1>
+      </header>
+      <p className={styles.intro}>
         {
           (loading.global || !homepage.movietop250)
-            ? '获取豆瓣热门电影中...'
+            ? '获取豆瓣热门电影排行榜 TOP5'
             : this.returnRandomMovieName()
         }
-      </h1>
+      </p>
     </div>
   }
 }

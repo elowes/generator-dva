@@ -79,7 +79,7 @@ module.exports = class extends Generator {
         return this.prompt([{
             type: "list",
             choices: ['npm', 'cnpm', 'yarn'],
-            message: '[1/1] Which tools to install dependence?',
+            message: '[1/1] Which tools to install dependencies?',
             name: 'tool'
         },]).then((answers) => {
             if (answers.tool === 'cnpm') {
@@ -94,7 +94,8 @@ module.exports = class extends Generator {
         })
     }
     end() {
-        this.log("run `npm start` to start dev server...")
+        this.log("Install dependencies finished.")
+        this.log("Running `npm start` to start dev server...")
         this.spawnCommand('npm', ['start'])
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "generator-dva",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "create react&dva app easily.",
   "main": "index.js",
   "scripts": {},
