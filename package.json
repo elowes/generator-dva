@@ -2,9 +2,7 @@
   "name": "generator-dva",
   "version": "2.0.0",
   "description": "create react&dva app easily",
-  "bin": {
-    "dva": "./bin/dva"
-  },
+  "bin": "./bin/dva",
   "scripts": {},
   "author": "",
   "license": "ISC",
