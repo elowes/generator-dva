@@ -118,7 +118,7 @@ module.exports = {
     new CleanWebpackPlugin('dist'),
     new HtmlWebpackPlugin({
       filename: '../index.html',
-      title: '<%= name %>',
+      title: 'generator-dva',
       template: './index.ejs'
     }),
     new webpack.DefinePlugin({

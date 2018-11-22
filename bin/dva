@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+const { logGreen, logRed, installDependencies } = require('../lib/utils');
+const spawn = require('cross-spawn');
+const program = require('commander');
+const fs = require('fs');
+const path = require('path');
+const inquirer = require('inquirer');
+
+program
+  .command('init [app-name]')
+  .alias('i')
+  .description('在[app-name]文件夹下创建React&Dva应用，如果没有[app-name]，则直接在当前目录下创建')
+  .action(function(appName) {
+    if (!appName) {
+      inquirer
+        .prompt([
+          {
+            type: 'confirm',
+            name: 'rewrite',
+            message: `将在当前目录(${path.resolve('./')})下创建应用，可能会覆盖已有文件，确定？`,
+            default: false
+          }
+        ])
+        .then(answers => {
+          if (!answers.rewrite) {
+            logGreen('您已取消操作');
+          } else {
+            const appPath = path.resolve('./');
+            const res = spawn.sync('cp', ['-rf', path.resolve(__dirname, '../template/app') + '/.', appPath]);
+            if (!res.error) {
+              logGreen('初始化应用文件成功');
+              installDependencies(appPath);
+            }
+          }
+        })
+    } else {
+      const appPath = path.resolve(`./${appName}`);
+      inquirer
+        .prompt([
+          {
+            type: 'confirm',
+            name: 'rewrite',
+            message: `新建目录(${appPath})并在其下创建应用，确定？`,
+            default: false
+          }
+        ])
+        .then(answers => {
+          if (!answers.rewrite) {
+            logGreen('您已取消操作');
+          } else {
+            if (fs.existsSync(appPath)) {
+              logRed('当前目录已存在，无法继续创建应用，请删除目录或更换目录后重试');
+            } else {
+              const res = spawn.sync('cp', ['-rf', path.resolve(__dirname, '../template/app'), appPath]);
+              if (!res.error) {
+                logGreen('初始化应用文件成功');
+                installDependencies(appPath);
+              }
+            }
+          }
+        })
+    }
+  })
+
+program
+  .version(require('../package.json').version, '-v, --version')
+
+program.parse(process.argv);
