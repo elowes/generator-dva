@@ -1,0 +1,22 @@
+[
+  {
+    "filename": ".babelrc.ejs",
+    "dist": "./"
+  },
+  {
+    "filename": "index.html.ejs",
+    "dist": "./"
+  },
+  {
+    "filename": "package.json.ejs",
+    "dist": "./"
+  },
+  {
+    "filename": "README.md.ejs",
+    "dist": "./"
+  },
+  {
+    "filename": "webpack.config.prod.js.ejs",
+    "dist": "./"
+  }
+]
