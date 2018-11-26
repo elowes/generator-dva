@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-const { logGreen, logRed, installDependencies, renderEjsTmpl, initProj } = require('../lib/utils');
-const spawn = require('cross-spawn');
+const { logRed, initProj } = require('../lib/utils');
 const program = require('commander');
 const fs = require('fs');
 const path = require('path');
-const inquirer = require('inquirer');
 
 program
   .command('init [app-name]')
@@ -15,16 +13,13 @@ program
     if (!appName) {
       const appPath = path.resolve('./');
       initProj(appPath);
-      // const args = {
-      //   antd: true,
-      //   name: 'name',
-      //   description: 'description',
-      //   author: 'author'
-      // }
-      // renderEjsTmpl(args, appPath);
     } else {
       const appPath = path.resolve(`./${appName}`);
-      initProj(appPath);
+      if (fs.existsSync(appPath)) {
+        logRed('当前目录已存在，无法继续创建应用，请删除目录或更换目录后重试');
+      } else {
+        initProj(appPath);
+      }
     }
   })
 
