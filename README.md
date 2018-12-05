@@ -1,5 +1,6 @@
-# generator-dva
-> create react&dva app easily.
+# generator-dva &middot; [![npm](https://img.shields.io/npm/v/generator-dva.svg)](https://www.npmjs.com/package/generator-dva)
+
+Create React&Dva app easily.
 
 ## 1.x doc
 [link](./docs/1.x.md)
